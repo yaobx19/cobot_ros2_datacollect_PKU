@@ -1,0 +1,20 @@
+build/
+install/
+log/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.DS_Store
+
+# Local data and recordings
+data/
+data_mp4/
+*.hdf5
+*.bag
+*.mp4
+*.mkv
+
+# Local environment files
+.env
+*.local
+

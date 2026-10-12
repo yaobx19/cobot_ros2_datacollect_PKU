@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>cobot_magic_ros2</name>
+  <version>0.1.0</version>
+  <description>ROS 2 data collection utilities for AgileX Cobot Magic with Piper arms and RealSense cameras.</description>
+  <maintainer email="pc@localhost.localdomain">pc</maintainer>
+  <license>BSD-3-Clause</license>
+
+  <depend>rclpy</depend>
+  <depend>sensor_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>std_msgs</depend>
+  <depend>std_srvs</depend>
+
+  <exec_depend>ros2launch</exec_depend>
+  <exec_depend>launch_ros</exec_depend>
+  <exec_depend>python3-pil</exec_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>

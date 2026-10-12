@@ -1,0 +1,5 @@
+numpy
+Pillow
+h5py
+pyrealsense2
+piper_sdk
