@@ -225,7 +225,7 @@ collect_and_export() {
     speak "Episode ${episode_index} collection ended"
 
     printf 'Exporting videos and diagnostics for %s.\n' "${episode_stem}"
-    if ! PYTHONNOUSERSITE=1 MPLCONFIGDIR="${MPL_CONFIG_DIR}" "${EXPORT_PYTHON}" \
+    if ! MPLCONFIGDIR="${MPL_CONFIG_DIR}" "${EXPORT_PYTHON}" \
         "${EXPORT_SCRIPT}" \
         "${hdf5_path}" \
         --output-dir "${episode_export_dir}" \
@@ -352,7 +352,9 @@ EXPORT_DIR="${EXPORT_DIR/#\~/${HOME}}"
 [[ -r "${COLLECT_SCRIPT}" ]] || die "interactive collector not found: ${COLLECT_SCRIPT}"
 [[ -x "${COLLECT_PYTHON}" ]] || die "collection Python not found: ${COLLECT_PYTHON}"
 [[ -r "${EXPORT_SCRIPT}" ]] || die "export script not found: ${EXPORT_SCRIPT}"
-[[ -x "${EXPORT_PYTHON}" ]] || die "export Python not found: ${EXPORT_PYTHON}"
+if ! EXPORT_PYTHON="$(command -v "${EXPORT_PYTHON}" 2>/dev/null)"; then
+    [[ -x "${EXPORT_PYTHON}" ]] || die "export Python not found: ${EXPORT_PYTHON}"
+fi
 [[ -t 0 ]] || die "this script requires an interactive terminal"
 
 set +u
@@ -364,7 +366,7 @@ export ROS_LOCALHOST_ONLY=1
 command -v ros2 >/dev/null 2>&1 || die "ros2 is unavailable after sourcing the environment"
 ros2 pkg prefix cobot_magic_ros2 >/dev/null || die "ROS 2 package cobot_magic_ros2 is unavailable"
 mkdir -p "${MPL_CONFIG_DIR}"
-PYTHONNOUSERSITE=1 MPLCONFIGDIR="${MPL_CONFIG_DIR}" "${EXPORT_PYTHON}" -c \
+MPLCONFIGDIR="${MPL_CONFIG_DIR}" "${EXPORT_PYTHON}" -c \
     'import cv2, h5py, matplotlib, numpy' || die "the export Python environment is incomplete"
 "${COLLECT_PYTHON}" -c 'import h5py, numpy, rclpy; import cobot_magic_ros2.collect_data' || \
     die "the ROS 2 collection Python environment is incomplete"

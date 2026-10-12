@@ -22,7 +22,7 @@ source /opt/ros/humble/setup.bash
 source install/setup.bash
 ```
 
-如目标主机没有 ROS2 Humble，先安装官方 ROS2 Humble，再运行安装脚本。若目标主机使用已有虚拟环境，可设置 `EXPORT_PYTHON=/path/to/python` 后运行采集入口。
+如目标主机没有 ROS2 Humble，先安装官方 ROS2 Humble，再运行安装脚本。安装脚本默认使用 PATH 中的 `python3`；若目标主机使用已有 Python 环境，可设置 `PYTHON_BIN=/path/to/python` 安装依赖，并设置 `EXPORT_PYTHON=/path/to/python` 运行采集入口。两者应指向同一个环境。
 
 ## 启动硬件
 
