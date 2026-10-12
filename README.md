@@ -16,7 +16,7 @@
 要求 Ubuntu 22.04、ROS2 Humble、可用的 RealSense 和双 CAN 设备。将整个目录复制到目标主机后执行：
 
 ```bash
-cd cobot_ros2_datacollect_PKU_portable
+cd cobot_ros2_datacollect_PKU
 bash install_portable.sh
 source /opt/ros/humble/setup.bash
 source install/setup.bash
@@ -55,7 +55,7 @@ ros2 launch cobot_magic_ros2 collect_stack_split_cameras.launch.py \
 另开一个终端：
 
 ```bash
-cd cobot_ros2_datacollect_PKU_portable
+cd cobot_ros2_datacollect_PKU
 export EXPORT_PYTHON=python3
 bash scripts/interactive_collect_data.sh \
   --dataset-dir ~/data \
